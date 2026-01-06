@@ -65,7 +65,7 @@ MTExMTMzMDUxNDE2OTcMTk...
 | `AFTER_DELETE` | 送信後に自動削除するか | `true` / `false` |
 | `AFTER_DELETE_TIME` | 削除を実行するまでの遅延 (ms) | `"1500-3000"` |
 | `SPLIT_NEWLINE` | `message.txt` を改行で区切るか | `true` / `false` |
-| `SEND_COUNT` | 総送信回数 (`0` で無限ループ) | `0`<br>`100` |
+| `SEND_COUNT` | 総送信回数 (`0` で無限ループ) | `0`<br>`100-200` |
 
 ---
 
