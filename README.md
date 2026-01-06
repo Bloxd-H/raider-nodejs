@@ -12,7 +12,7 @@ Node.js環境で動作する、高機能・非同期型のDiscord自動送信ツ
 ```text
 .
 ├── main.js             <-- ツール本体
-└── data1/              <-- 設定フォルダ (名前は自由)
+└── conf1/              <-- 設定フォルダ (名前は自由)
      ├── token.txt      <-- トークンリスト
      ├── channels.txt   <-- チャンネルIDリスト
      ├── message.txt    <-- 送信する文章
@@ -26,15 +26,15 @@ Node.js環境で動作する、高機能・非同期型のDiscord自動送信ツ
 ### 1. `token.txt`
 Discordのアカウントトークンを1行に1つずつ入力してください。
 ```text
-MzUz...
-OTVk...
+MTQzMTI0NTAzMTU4MjMzOT...
+MTExMTMzMDUxNDE2OTcMTk...
 ```
 
 ### 2. `channels.txt`
 送信先のチャンネルIDを1行に1つずつ入力してください。
 ```text
-123456789...
-987654321...
+163963826...
+937553631...
 ```
 
 ### 3. `message.txt`
@@ -76,7 +76,7 @@ OTVk...
    ```bash
    node main.js
    ```
-3. `folder name >` と表示されたら、作成した設定フォルダ名（例: `data1`）を入力します。
+3. `folder name >` と表示されたら、作成した設定フォルダ名（例: `conf1`）を入力します。
 4. 設定の読み込みが完了し `Ready? >` と表示されたら、`y` を入力して開始します。
 
 ## ログの見方
