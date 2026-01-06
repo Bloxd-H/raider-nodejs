@@ -81,9 +81,9 @@ function displayStats() {
         : 0;
     
     console.log(`\n${colors.blue}━━━━━━━━━━━━━━━ 統計情報 ━━━━━━━━━━━━━━━${colors.reset}`);
-    console.log(`${colors.green} 成功:${colors.reset} ${STATS.success}  ${colors.red} 失敗:${colors.reset} ${STATS.errors}  ${colors.yellow} レート制限:${colors.reset} ${STATS.rateLimit}`);
-    console.log(`${colors.blue} 総送信数:${colors.reset} ${STATS.totalSent}  ${colors.green}成功率:${colors.reset} ${successRate}%`);
-    console.log(`${colors.blue} 実行時間:${colors.reset} ${timeStr}  ${colors.green}平均速度:${colors.reset} ${avgSpeed} msg/分`);
+    console.log(`${colors.green}✓ 成功:${colors.reset} ${STATS.success}  ${colors.red}✗ 失敗:${colors.reset} ${STATS.errors}  ${colors.yellow}⚠ レート制限:${colors.reset} ${STATS.rateLimit}`);
+    console.log(`${colors.blue}📊 総送信数:${colors.reset} ${STATS.totalSent}  ${colors.green}成功率:${colors.reset} ${successRate}%`);
+    console.log(`${colors.blue}⏱ 実行時間:${colors.reset} ${timeStr}  ${colors.green}平均速度:${colors.reset} ${avgSpeed} msg/分`);
     console.log(`${colors.blue}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${colors.reset}\n`);
 }
 
@@ -185,7 +185,6 @@ async function deleteMessage(channelId, messageId, token) {
 
 async function performRequest(token, channelId, content) {
     ACTIVE_REQUESTS++;
-    STATS.totalSent++;
     try {
         let channelName = CHANNEL_NAMES_CACHE[channelId] || "...";
 
@@ -201,7 +200,6 @@ async function performRequest(token, channelId, content) {
         const json = await res.json().catch(() => ({}));
 
         if (res.ok) {
-            STATS.success++;
             const user = json.author || { username: "Unknown", id: "Unknown" };
             const cId = json.channel_id;
             const msgId = json.id;
@@ -219,16 +217,12 @@ async function performRequest(token, channelId, content) {
             }
 
         } else if (res.status === 429) {
-            STATS.rateLimit++;
-            STATS.errors++;
             const retry = json.retry_after || 1;
             log('RATE', `Status: 429 RETRY_AFTER: ${retry}`);
         } else {
-            STATS.errors++;
             log('ERROR', `Status: ${res.status} code: ${json.message || JSON.stringify(json)}`);
         }
     } catch (e) {
-        STATS.errors++;
         log('ERROR', `Network Error: ${e.message}`);
     } finally {
         ACTIVE_REQUESTS--;
@@ -272,12 +266,7 @@ async function startSpam() {
     }
 
     stopStatsDisplay();
-    
-    // 最終統計を表示
-    console.log('\n');
-    log('INFO', 'Task Complete!');
-    displayStats();
-    
+    log('INFO', 'Task Complete. Exiting...');
     process.exit(0);
 }
 

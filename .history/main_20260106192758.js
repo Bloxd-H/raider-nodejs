@@ -81,7 +81,7 @@ function displayStats() {
         : 0;
     
     console.log(`\n${colors.blue}━━━━━━━━━━━━━━━ 統計情報 ━━━━━━━━━━━━━━━${colors.reset}`);
-    console.log(`${colors.green} 成功:${colors.reset} ${STATS.success}  ${colors.red} 失敗:${colors.reset} ${STATS.errors}  ${colors.yellow} レート制限:${colors.reset} ${STATS.rateLimit}`);
+    console.log(`${colors.green} 成功:${colors.reset} ${STATS.success}  ${colors.red}✗ 失敗:${colors.reset} ${STATS.errors}  ${colors.yellow} レート制限:${colors.reset} ${STATS.rateLimit}`);
     console.log(`${colors.blue} 総送信数:${colors.reset} ${STATS.totalSent}  ${colors.green}成功率:${colors.reset} ${successRate}%`);
     console.log(`${colors.blue} 実行時間:${colors.reset} ${timeStr}  ${colors.green}平均速度:${colors.reset} ${avgSpeed} msg/分`);
     console.log(`${colors.blue}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${colors.reset}\n`);
@@ -272,12 +272,7 @@ async function startSpam() {
     }
 
     stopStatsDisplay();
-    
-    // 最終統計を表示
-    console.log('\n');
-    log('INFO', 'Task Complete!');
-    displayStats();
-    
+    log('INFO', 'Task Complete. Exiting...');
     process.exit(0);
 }
 
