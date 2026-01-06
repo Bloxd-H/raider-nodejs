@@ -189,7 +189,7 @@ async function startSpam() {
     const countSetting = getRangeValue(SETTINGS.SEND_COUNT);
     const isInfinite = (countSetting === 0);
     
-    log('INFO', isInfinite ? "Mode: Infinite Loop" : `Mode: Count Limited (${countSetting})`);
+    log('INFO', isInfinite ? "Mode: Infinity" : `Mode: Count: ${countSetting}`);
 
     let tokenIndex = 0;
     let channelIndex = 0;
