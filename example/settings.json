@@ -1,0 +1,7 @@
+{
+  "INTERVAL": "1000-2000",
+  "AFTER_DELETE": true,
+  "AFTER_DELETE_TIME": "1500",
+  "SPLIT_NEWLINE": true,
+  "SEND_COUNT": 0
+}

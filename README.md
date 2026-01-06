@@ -13,7 +13,7 @@ Node.js環境で動作する、高機能・非同期型のDiscord自動送信ツ
 ```text
 .
 ├── main.js             <-- ツール本体
-└── conf1/              <-- 設定フォルダ (名前は自由)
+└── example/            <-- 設定フォルダ (名前は自由)
      ├── token.txt      <-- トークンリスト
      ├── channels.txt   <-- チャンネルIDリスト
      ├── message.txt    <-- 送信する文章
