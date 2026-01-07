@@ -186,6 +186,7 @@ async function deleteMessage(channelId, messageId, token) {
 async function performRequest(token, channelId, content) {
     ACTIVE_REQUESTS++;
     STATS.totalSent++;
+    const tkn = token.slice(1,20);
     try {
         let channelName = CHANNEL_NAMES_CACHE[channelId] || "...";
 
@@ -212,7 +213,7 @@ async function performRequest(token, channelId, content) {
                 channelName = CHANNEL_NAMES_CACHE[cId];
             }
 
-            log('SUCCESS', `${user.username} (${user.id}) ch:#${channelName} (${cId})`);
+            log('SUCCESS', `${tkn}... | ${user.username} (${user.id}) ch:#${channelName} (${cId})`);
 
             if (SETTINGS.AFTER_DELETE) {
                 deleteMessage(cId, msgId, token);
@@ -222,14 +223,14 @@ async function performRequest(token, channelId, content) {
             STATS.rateLimit++;
             STATS.errors++;
             const retry = json.retry_after || 1;
-            log('RATE', `Status: 429 RETRY_AFTER: ${retry}`);
+            log('RATE', `${tkn}... | Status: 429 RETRY_AFTER: ${retry}`);
         } else {
             STATS.errors++;
-            log('ERROR', `Status: ${res.status} code: ${json.message || JSON.stringify(json)}`);
+            log('ERROR', `${tkn}... | Status: ${res.status} code: ${json.message || JSON.stringify(json)}`);
         }
     } catch (e) {
         STATS.errors++;
-        log('ERROR', `Network Error: ${e.message}`);
+        log('ERROR', `${tkn}... | Network Error: ${e.message}`);
     } finally {
         ACTIVE_REQUESTS--;
     }
